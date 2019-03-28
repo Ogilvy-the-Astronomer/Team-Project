@@ -19,22 +19,22 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (moveAction) {
-			if (Input.GetKeyDown(KeyCode.W) && !Physics.Raycast(new Ray(transform.position,transform.forward),5f)) {
+			if (Input.GetKeyDown(KeyCode.W) && !Physics.Raycast(new Ray(transform.position,transform.forward),1f)) {
 				transform.Translate (transform.forward);
 				moveAction = false;
 				Debug.Log ("Player moved");
 			}
-			if (Input.GetKeyDown(KeyCode.S) && !Physics.Raycast(new Ray(transform.position,-transform.forward),5f)) {
+			if (Input.GetKeyDown(KeyCode.S) && !Physics.Raycast(new Ray(transform.position,-transform.forward),1f)) {
 				transform.Translate (-transform.forward);
 				moveAction = false;
 				Debug.Log ("Player moved");
 			}
-			if (Input.GetKeyDown(KeyCode.D) && !Physics.Raycast(new Ray(transform.position,transform.right),5f)) {
+			if (Input.GetKeyDown(KeyCode.D) && !Physics.Raycast(new Ray(transform.position,transform.right),1f)) {
 				transform.Translate (transform.right);
 				moveAction = false;
 				Debug.Log ("Player moved");
 			}
-			if (Input.GetKeyDown(KeyCode.A) && !Physics.Raycast(new Ray(transform.position,-transform.right),5f)) {
+			if (Input.GetKeyDown(KeyCode.A) && !Physics.Raycast(new Ray(transform.position,-transform.right),1f)) {
 				transform.Translate (-transform.right);
 				moveAction = false;
 				Debug.Log ("Player moved");
@@ -45,5 +45,42 @@ public class PlayerController : MonoBehaviour {
 	public void BeginTurn(){
 		moveAction = true;
 		standardAction = true;
+	}
+
+	public void AttackUp(){
+		if (standardAction) {
+			Debug.Log ("Attack up");
+			standardAction = false;
+			RaycastHit hit;
+			Physics.Raycast (new Ray (transform.position, transform.forward), out hit, 1f);
+			hit.transform.gameObject.GetComponent<EnemyController> ().TakeDamage (5);
+		}
+	}
+	public void AttackRight(){
+		if (standardAction) {
+			Debug.Log ("Attack left");
+			standardAction = false;
+			RaycastHit hit;
+			Physics.Raycast (new Ray (transform.position, -transform.right), out hit, 1f);
+			hit.transform.gameObject.GetComponent<EnemyController> ().TakeDamage (5);
+		}
+	}
+	public void AttackDown(){
+		if (standardAction) {
+			Debug.Log ("Attack down");
+			standardAction = false;
+			RaycastHit hit;
+			Physics.Raycast (new Ray (transform.position, -transform.forward), out hit, 1f);
+			hit.transform.gameObject.GetComponent<EnemyController> ().TakeDamage (5);
+		}
+	}
+	public void AttackLeft(){
+		if (standardAction) {
+			Debug.Log ("Attack right");
+			standardAction = false;
+			RaycastHit hit;
+			Physics.Raycast (new Ray (transform.position, transform.right), out hit, 1f);
+			hit.transform.gameObject.GetComponent<EnemyController> ().TakeDamage (5);
+		}
 	}
 }
