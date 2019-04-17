@@ -22,6 +22,7 @@ public class LayoutGen : MonoBehaviour {
 		GetComponent<Renderer> ().material = textures [textureNo];
 		if (count == roomRadius) {
 			GetComponent<Renderer> ().material = textures [4];
+
 		}
 		if (count < roomRadius) {
 			xpConnection = Random.Range (0, 2);
