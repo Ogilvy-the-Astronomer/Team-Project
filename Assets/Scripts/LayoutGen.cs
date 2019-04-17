@@ -14,15 +14,23 @@ public class LayoutGen : MonoBehaviour {
 	public int zpConnection;
 	public int zmConnection;
 	public int count;
+	public int roomRadius;
+	public int minRoomRadius;
 	// Use this for initialization
 	void Start () {
 		int textureNo = Random.Range (0, 4);
 		GetComponent<Renderer> ().material = textures [textureNo];
-		if (count < 200) {
+		if (count == roomRadius) {
+			GetComponent<Renderer> ().material = textures [4];
+		}
+		if (count < roomRadius) {
 			xpConnection = Random.Range (0, 2);
 			xmConnection = Random.Range (0, 2);
 			zpConnection = Random.Range (0, 2);
 			zmConnection = Random.Range (0, 2);
+			if (count < minRoomRadius) {
+				xpConnection = xmConnection = zmConnection = zpConnection = 1;
+			}
 			if (xpConnection == 1) {
 				if (Physics.OverlapSphere (xPlus.transform.position, 2).Length < 1) {
 					GameObject child = Instantiate (Room, xPlus.transform.position, Quaternion.identity);
