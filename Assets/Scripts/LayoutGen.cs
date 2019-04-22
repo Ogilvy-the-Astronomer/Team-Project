@@ -33,25 +33,25 @@ public class LayoutGen : MonoBehaviour {
 				xpConnection = xmConnection = zmConnection = zpConnection = 1;
 			}
 			if (xpConnection == 1) {
-				if (Physics.OverlapSphere (xPlus.transform.position, 2).Length < 1) {
+				if (Physics.OverlapSphere (xPlus.transform.position, 5).Length < 1) {
 					GameObject child = Instantiate (Room, xPlus.transform.position, Quaternion.identity);
 					child.GetComponent<LayoutGen> ().count++;
 				}
 			}
 			if (xmConnection == 1) {
-				if (Physics.OverlapSphere (xMinus.transform.position, 2).Length < 1) {
+				if (Physics.OverlapSphere (xMinus.transform.position, 5).Length < 1) {
 					GameObject child = Instantiate (Room, xMinus.transform.position, Quaternion.identity);
 					child.GetComponent<LayoutGen> ().count++;
 				}
 			}
 			if (zpConnection == 1) {
-				if (Physics.OverlapSphere (zPlus.transform.position, 2).Length < 1) {
+				if (Physics.OverlapSphere (zPlus.transform.position, 5).Length < 1) {
 					GameObject child = Instantiate (Room, zPlus.transform.position, Quaternion.identity);
 					child.GetComponent<LayoutGen> ().count++;
 				}
 			}
 			if (zmConnection == 1) {
-				if (Physics.OverlapSphere (zMinus.transform.position, 2).Length < 1) {
+				if (Physics.OverlapSphere (zMinus.transform.position, 5).Length < 1) {
 					GameObject child = Instantiate (Room, zMinus.transform.position, Quaternion.identity);
 					child.GetComponent<LayoutGen> ().count++;
 				}
