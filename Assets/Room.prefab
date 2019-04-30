@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1040891862617916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0.5}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 4433463026980720}
@@ -236,10 +236,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: eed34ed803a93ff47875358287fd7c88, type: 2}
   - {fileID: 2100000, guid: 0705e38ee34f5c049984837e5041772d, type: 2}
   - {fileID: 2100000, guid: af400c317979e7341b21a52e46170df0, type: 2}
+  teleporter: {fileID: 1429720024631964, guid: 84d7f2d94ce9d9f428bbaf26f906d03a, type: 2}
   xpConnection: 0
   xmConnection: 0
   zpConnection: 0
   zmConnection: 0
   count: 0
   roomRadius: 6
-  minRoomRadius: 3
+  minRoomRadius: 2

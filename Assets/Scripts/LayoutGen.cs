@@ -9,6 +9,7 @@ public class LayoutGen : MonoBehaviour {
 	public GameObject zPlus;
 	public GameObject zMinus;
 	public Material[] textures;
+	public GameObject teleporter;
 	public int xpConnection;
 	public int xmConnection;
 	public int zpConnection;
@@ -22,7 +23,8 @@ public class LayoutGen : MonoBehaviour {
 		GetComponent<Renderer> ().material = textures [textureNo];
 		if (count == roomRadius) {
 			GetComponent<Renderer> ().material = textures [4];
-
+			if (Random.value > 0.95f)
+				newFloor ();
 		}
 		if (count < roomRadius) {
 			xpConnection = Random.Range (0, 2);
@@ -62,5 +64,16 @@ public class LayoutGen : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	}
+
+	void newFloor(){
+		Debug.Log ("New floor");
+		GameObject thisteleporter = Instantiate (teleporter, this.gameObject.transform.position + new Vector3(0,3,0), Quaternion.identity);
+		GameObject newFloorRoom = Instantiate (Room, new Vector3(Random.Range(-10000,10000),0,Random.Range(-10000,10000)), Quaternion.identity);
+		newFloorRoom.GetComponent<LayoutGen> ().count = 0;
+		GameObject child = Instantiate (teleporter, newFloorRoom.gameObject.transform.position + new Vector3(0,3,0), Quaternion.identity);
+		thisteleporter.GetComponentInChildren<Teleporter> ().other = child;
+		child.GetComponentInChildren<Teleporter> ().other = thisteleporter;
+		child.GetComponentInChildren<Teleporter> ().count++;
 	}
 }
