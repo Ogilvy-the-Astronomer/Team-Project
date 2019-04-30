@@ -32,7 +32,7 @@ public class Doorstopper : MonoBehaviour {
 			prooms = rooms;
 	}
 
-	void Fill(){
+	public void Fill(){
 		for (int i = 0; i < rooms; i++) {
 			LayoutGen a = roomlist [i].GetComponent<LayoutGen> ();
 			if (Physics.OverlapSphere (a.xPlus.transform.position, 5).Length < 1) {

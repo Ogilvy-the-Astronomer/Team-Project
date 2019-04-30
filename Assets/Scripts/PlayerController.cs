@@ -22,22 +22,22 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKeyDown(KeyCode.W) && !Physics.Raycast(new Ray(transform.position,transform.forward),1f)) {
 				transform.Translate (transform.forward);
 				moveAction = false;
-				Debug.Log ("Player moved");
+				//Debug.Log ("Player moved");
 			}
 			if (Input.GetKeyDown(KeyCode.S) && !Physics.Raycast(new Ray(transform.position,-transform.forward),1f)) {
 				transform.Translate (-transform.forward);
 				moveAction = false;
-				Debug.Log ("Player moved");
+				//Debug.Log ("Player moved");
 			}
 			if (Input.GetKeyDown(KeyCode.D) && !Physics.Raycast(new Ray(transform.position,transform.right),1f)) {
 				transform.Translate (transform.right);
 				moveAction = false;
-				Debug.Log ("Player moved");
+				//Debug.Log ("Player moved");
 			}
 			if (Input.GetKeyDown(KeyCode.A) && !Physics.Raycast(new Ray(transform.position,-transform.right),1f)) {
 				transform.Translate (-transform.right);
 				moveAction = false;
-				Debug.Log ("Player moved");
+				//Debug.Log ("Player moved");
 			}
 		}
 	}

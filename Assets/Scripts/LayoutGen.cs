@@ -23,7 +23,7 @@ public class LayoutGen : MonoBehaviour {
 		GetComponent<Renderer> ().material = textures [textureNo];
 		if (count == roomRadius) {
 			GetComponent<Renderer> ().material = textures [4];
-			if (Random.value > 0.95f)
+			if (Random.value > 0)
 				newFloor ();
 		}
 		if (count < roomRadius) {
@@ -67,13 +67,13 @@ public class LayoutGen : MonoBehaviour {
 	}
 
 	void newFloor(){
-		Debug.Log ("New floor");
+		//Debug.Log ("N");
 		GameObject thisteleporter = Instantiate (teleporter, this.gameObject.transform.position + new Vector3(0,3,0), Quaternion.identity);
-		GameObject newFloorRoom = Instantiate (Room, new Vector3(Random.Range(-10000,10000),0,Random.Range(-10000,10000)), Quaternion.identity);
-		newFloorRoom.GetComponent<LayoutGen> ().count = 0;
-		GameObject child = Instantiate (teleporter, newFloorRoom.gameObject.transform.position + new Vector3(0,3,0), Quaternion.identity);
-		thisteleporter.GetComponentInChildren<Teleporter> ().other = child;
-		child.GetComponentInChildren<Teleporter> ().other = thisteleporter;
-		child.GetComponentInChildren<Teleporter> ().count++;
+		//GameObject newFloorRoom = Instantiate (Room, new Vector3(Random.Range(-10000,10000),0,Random.Range(-10000,10000)), Quaternion.identity);
+		//newFloorRoom.GetComponent<LayoutGen> ().count = 0;
+		//GameObject child = Instantiate (teleporter, newFloorRoom.gameObject.transform.position + new Vector3(0,3,0), Quaternion.identity);
+		//thisteleporter.GetComponentInChildren<Teleporter> ().other = child;
+		//child.GetComponentInChildren<Teleporter> ().other = thisteleporter;
+		//child.GetComponentInChildren<Teleporter> ().count++;
 	}
 }
