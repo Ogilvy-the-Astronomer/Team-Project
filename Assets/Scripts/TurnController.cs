@@ -18,7 +18,7 @@ public class TurnController : MonoBehaviour {
 
 	public void EndTurn() {
 		//Debug.Log ("Turn Ended");
-		player.GetComponent<PlayerController> ().BeginTurn ();
+		player.GetComponent<Player> ().BeginTurn ();
 		GameObject[] enemyList = GameObject.FindGameObjectsWithTag ("Enemy");
 		for (int i = 0; i < enemyList.Length; i++) {
 			enemyList [i].GetComponent<EnemyController> ().DoTurn ();
