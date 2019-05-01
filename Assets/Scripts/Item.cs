@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public enum ItemType { Consumable, Weapon, Armour };
+public enum WeapType { Light, Heavy, Ranged, Wand };
+public enum ArmType { Light, Heavy, Robes };
+public enum ConsType { Potion, Arrow };
+
+
+public class Item
 {
-    public enum ItemType { Consumable, Weapon, Armour };
 
     public int Index;
     public string Name;

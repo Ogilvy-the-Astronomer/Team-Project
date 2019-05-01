@@ -4,23 +4,28 @@ using UnityEngine;
 
 public static class ItemTemplates
 {
-    static readonly Dictionary<string, Weapon> WeaponList;
-    static readonly Dictionary<string, Armour> ArmourList;
-    static readonly Dictionary<string, Consumable> ConsumableList;
-    //static readonly Dictionary<string, Enemy> EnemyList;
+    static readonly List<Weapon> WeaponList;
+    static readonly List<Armour> ArmourList;
+    static readonly List<Consumable> ConsumableList;
+    //static readonly List<Enemy> EnemyList;
 
     static ItemTemplates()
     {
+        WeaponList = new List<Weapon>();
+        ArmourList = new List<Armour>();
+        ConsumableList = new List<Consumable>();
         InitializeWeapons();
         InitializeArmours();
         InitializeConsumables();
+        //InitializeEnemies();
+        //whatever other stuff
     }
 
     public static void ConstructWeapon(ref Weapon W, int index)
     {
         W.Index = index;
         W.Name = WeaponList[index].Name;
-        W.Type = ItemType.Weapon;
+        W.TypeI = ItemType.Weapon;
         W.PlusBonus = 0;
         W.Value = WeaponList[index].Value;
         W.TypeW = WeaponList[index].TypeW;
@@ -37,7 +42,7 @@ public static class ItemTemplates
         {
             WeaponList[i] = new Weapon();
             WeaponList[i].Index = i;
-            WeaponList[i].Type = ItemType.Weapon;
+            WeaponList[i].TypeI = ItemType.Weapon;
             WeaponList[i].PlusBonus = 0;
             WeaponList[i].Enchantment = "";
             WeaponList[i].EnchMagnitude = 0;
@@ -70,7 +75,7 @@ public static class ItemTemplates
         {
             ArmourList[i] = new Armour();
             ArmourList[i].Index = i;
-            ArmourList[i].Type = ItemType.Armour;
+            ArmourList[i].TypeI = ItemType.Armour;
             // any other default armour stuff
             switch (i)
             {
@@ -89,7 +94,7 @@ public static class ItemTemplates
         {
             ConsumableList[i] = new Consumable();
             ConsumableList[i].Index = i;
-            ConsumableList[i].Type = ItemType.Consumable;
+            ConsumableList[i].TypeI = ItemType.Consumable;
             // any other default consumable stuff
             switch (i)
             {

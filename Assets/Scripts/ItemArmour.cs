@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Armour : Item
 {
-    public enum ArmType { Light, Heavy, Robes };
+    
     public float[] Resistances = new float[5];
     public int ManaPool;
     public float ManaRegen;

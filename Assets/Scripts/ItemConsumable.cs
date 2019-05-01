@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Consumable : Item
 {
-    public enum ConsType { Potion, Arrow };
+    
 
     public ConsType TypeC;
     public int Magnitude;

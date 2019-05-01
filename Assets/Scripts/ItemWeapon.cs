@@ -6,7 +6,7 @@ public enum Element { Physical, Fire, Frost, Earth, Electric };
 
 public class Weapon : Item
 {
-    public enum WeapType { Light, Heavy, Ranged, Wand };
+    
 
     public WeapType TypeW;
     public int Damage;
