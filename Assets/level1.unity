@@ -2763,6 +2763,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114341824679950134, guid: 2227ed58deca2c842b7b44c2a4930a6e,
+        type: 2}
+      propertyPath: teleporter
+      value: 
+      objectReference: {fileID: 1429720024631964, guid: 84d7f2d94ce9d9f428bbaf26f906d03a,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2227ed58deca2c842b7b44c2a4930a6e, type: 2}
   m_IsPrefabParent: 0
