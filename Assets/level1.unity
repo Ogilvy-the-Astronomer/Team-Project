@@ -690,7 +690,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 128982768}
+      - m_Target: {fileID: 1760486634}
         m_MethodName: AttackLeft
         m_Mode: 1
         m_Arguments:
@@ -1781,7 +1781,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 128982768}
+      - m_Target: {fileID: 1760486634}
         m_MethodName: AttackDown
         m_Mode: 1
         m_Arguments:
@@ -2376,15 +2376,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400024, guid: 2027431e307e0d445bb66be88cb2c5cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.423592
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 2027431e307e0d445bb66be88cb2c5cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 86.9447
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 2027431e307e0d445bb66be88cb2c5cc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 83.20092
+      value: 496
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: 2027431e307e0d445bb66be88cb2c5cc, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2446,7 +2446,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1220124446}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6f85adc8fa8dae47986fdfbac75f7f0, type: 3}
   m_Name: 
@@ -3045,7 +3045,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 128982768}
+      - m_Target: {fileID: 1760486634}
         m_MethodName: AttackUp
         m_Mode: 1
         m_Arguments:
@@ -3253,7 +3253,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 128982768}
+      - m_Target: {fileID: 1760486634}
         m_MethodName: AttackRight
         m_Mode: 1
         m_Arguments:
@@ -3663,6 +3663,7 @@ MonoBehaviour:
   root: {fileID: 1175997746}
   isMoving: 0
   MoveDir: {x: 0, y: 0, z: 0}
+  AttackDir: {x: 0, y: 0, z: 0}
   moveAction: 0
   standardAction: 0
 --- !u!136 &1760486635

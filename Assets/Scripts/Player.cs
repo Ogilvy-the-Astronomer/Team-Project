@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
 	public Armour ArmourPrimary;
 
 
+	public Vector3 AttackDir;
 	public bool moveAction;
 	public bool standardAction;
 	// Use this for initialization
@@ -87,38 +88,43 @@ public class Player : MonoBehaviour {
 
 	public void AttackUp(){
 		if (standardAction) {
-			Debug.Log ("Attack up");
-			standardAction = false;
-			RaycastHit hit;
-			Physics.Raycast (new Ray (transform.position, Vector3.forward), out hit, 1f);
-			hit.transform.gameObject.GetComponent<EnemyController> ().TakeDamage (5);
+			//Debug.Log ("Attack up");
+			AttackDir = Vector3.forward;
+			Attack ();
 		}
 	}
+	//yes I'm aware that attck right sets the attack direction to left and visa versa, for some reason that's the only way it works. Don't rename the functions cuz they correspond to which button calls them
 	public void AttackRight(){
 		if (standardAction) {
-			Debug.Log ("Attack left");
-			standardAction = false;
-			RaycastHit hit;
-			Physics.Raycast (new Ray (transform.position, -Vector3.right), out hit, 1f);
-			hit.transform.gameObject.GetComponent<EnemyController> ().TakeDamage (5);
+			Attack ();
+			AttackDir = Vector3.left;
+			//Debug.Log ("Attack left");
 		}
 	}
 	public void AttackDown(){
 		if (standardAction) {
-			Debug.Log ("Attack down");
-			standardAction = false;
-			RaycastHit hit;
-			Physics.Raycast (new Ray (transform.position, -Vector3.forward), out hit, 1f);
-			hit.transform.gameObject.GetComponent<EnemyController> ().TakeDamage (5);
+			Attack ();
+			AttackDir = Vector3.back;
+			//Debug.Log ("Attack down");
 		}
 	}
 	public void AttackLeft(){
 		if (standardAction) {
-			Debug.Log ("Attack right");
-			standardAction = false;
-			RaycastHit hit;
-			Physics.Raycast (new Ray (transform.position, Vector3.right), out hit, 1f);
-			hit.transform.gameObject.GetComponent<EnemyController> ().TakeDamage (5);
+			Attack ();
+			AttackDir = Vector3.right;
+			//Debug.Log ("Attack right");
 		}
+	}
+	void Attack(){
+		//standardAction = false;
+		RaycastHit hit;
+		if(Physics.Raycast (new Ray (transform.position + Vector3.up, AttackDir), out hit, 1f)){
+			if (hit.collider.tag == "Enemy") {
+				hit.transform.gameObject.GetComponent<EnemyController> ().TakeDamage (5);
+				Debug.Log ("Attack hit\n ######");
+			}
+		}
+		GetComponent<Animator> ().Play ("Attack");
+		AttackDir = Vector3.zero;
 	}
 }
