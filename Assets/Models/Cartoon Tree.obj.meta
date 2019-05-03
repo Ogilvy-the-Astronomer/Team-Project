@@ -1,26 +1,18 @@
 fileFormatVersion: 2
-guid: c3b65f6e4316eee4899b9a0187869f6c
-timeCreated: 1555507787
+guid: 6a00d202abdf355488bae96be615bc28
+timeCreated: 1556896450
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: pCube1
-    100002: //RootNode
-    100004: RoomPlains
-    400000: pCube1
-    400002: //RootNode
-    400004: RoomPlains
-    2100000: initialShadingGroup
-    2100002: lambert2SG
-    2100004: tree_lowpoly_swap_trunk
-    2100006: tree_lowpoly_swap_foliage
-    2300000: pCube1
-    2300002: RoomPlains
-    3300000: pCube1
-    3300002: RoomPlains
-    4300000: pCube1
-    4300002: RoomPlains
+    100000: //RootNode
+    100002: tree_lowpoly_swap:Mesh
+    400000: //RootNode
+    400002: tree_lowpoly_swap:Mesh
+    2100000: tree_lowpoly_swap_MeshMat
+    2300000: tree_lowpoly_swap:Mesh
+    3300000: tree_lowpoly_swap:Mesh
+    4300000: tree_lowpoly_swap:Mesh
   externalObjects: {}
   materials:
     importMaterials: 1
