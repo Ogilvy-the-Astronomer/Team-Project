@@ -195,7 +195,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   other: {fileID: 0}
-  active: 0
+  active: 1
   count: 0
-  Room: {fileID: 1040891862617916, guid: 2227ed58deca2c842b7b44c2a4930a6e, type: 2}
   teleporter: {fileID: 1429720024631964}
+  rooms:
+  - {fileID: 1030749265618972, guid: 45c404e17e2f9864986f6f1ad90ff040, type: 2}
+  - {fileID: 1223584292043930, guid: 2e3ef6621029631409f9002b5f7f932e, type: 2}
+  - {fileID: 1729802000290660, guid: f2aa78aabce49b94fb75f41e9a72c68e, type: 2}
+  - {fileID: 1729802000290660, guid: f2aa78aabce49b94fb75f41e9a72c68e, type: 2}

@@ -40,6 +40,8 @@ ModelImporter:
     2100000: tree_lowpoly_swap_trunk
     2100002: tree_lowpoly_swap_foliage
     2100004: lambert2SG
+    2100006: trunk
+    2100008: foliage
     2300000: group_Mesh
     2300002: group_Mesh1
     2300004: group_Mesh10
