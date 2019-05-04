@@ -7,11 +7,11 @@ public class Teleporter : MonoBehaviour {
 	public bool active;
 	Teleporter otherScript;
 	public int count;
-	public GameObject Room;
+	GameObject Room;
 	public GameObject teleporter;
+	public GameObject[] rooms;
 	// Use this for initialization
 	void Start () {
-		active = true;
 	}
 	
 	// Update is called once per frame
@@ -22,7 +22,8 @@ public class Teleporter : MonoBehaviour {
 	void OnTriggerEnter(Collider target){
 		if (target.gameObject.tag == "Player" && active) {
 			if (other == null) {
-				GameObject newFloorRoom = Instantiate (Room, new Vector3 (Random.Range (-10000, 10000), 0, Random.Range (-10000, 10000)), Quaternion.identity);
+				Room = rooms [Random.Range (0, 3)];
+				GameObject newFloorRoom = Instantiate (Room, new Vector3 (Random.Range (-10000, 10000) + 0.5f, 0, Random.Range (-10000, 10000) + 0.5f), Quaternion.identity);
 				newFloorRoom.GetComponent<LayoutGen> ().count = 0;
 				GameObject child = Instantiate (teleporter, newFloorRoom.gameObject.transform.position + new Vector3 (0, 3, 0), Quaternion.identity);
 				other = child;

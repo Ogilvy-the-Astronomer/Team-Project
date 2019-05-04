@@ -67,7 +67,32 @@ ModelImporter:
     4300016: ruins_house2:Mesh_polySurface6_house4a
     4300018: ruins_house2:Mesh_polySurface6_house4b
     4300020: ruins_house2:Mesh_polySurface6_road
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2SG
+    second: {fileID: 2100000, guid: 681464309bdc71e45b01b46a088a233f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__Material
+    second: {fileID: 2100000, guid: 8e81c28208b00cd48be72b56dea862db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ruins_house2_Material
+    second: {fileID: 2100000, guid: 93f06abccf956e545897b0ce0c11adad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ruins_house3_Material
+    second: {fileID: 2100000, guid: bb204a3fedbccdb43955133d4373f51e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ruins_house4_Material
+    second: {fileID: 2100000, guid: bb0c87513b7301d4ba0a3ba1793cb77d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
