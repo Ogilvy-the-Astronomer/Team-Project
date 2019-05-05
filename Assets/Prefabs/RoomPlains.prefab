@@ -112,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1729802000290660}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -648, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 4828839556950684}
@@ -261,7 +261,6 @@ MonoBehaviour:
   xMinus: {fileID: 1877747167948728}
   zPlus: {fileID: 1425098182706310}
   zMinus: {fileID: 1947768475883262}
-  rooms: []
   teleporter: {fileID: 1429720024631964, guid: 84d7f2d94ce9d9f428bbaf26f906d03a, type: 2}
   xpConnection: 0
   xmConnection: 0
@@ -270,3 +269,8 @@ MonoBehaviour:
   count: 0
   roomRadius: 6
   minRoomRadius: 2
+  plainsEnemies:
+  - {fileID: 1608765871522698, guid: 8b31ee6415b4e7f4586a10f69d46c536, type: 2}
+  ruinsEnemies: []
+  caveEnemies: []
+  dungeonEnemies: []

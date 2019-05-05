@@ -113,6 +113,7 @@ public class Player : MonoBehaviour
                 {
                     isMoving = false;
                     GetComponent<Animator>().SetBool("isRunning", false);
+					transform.position = new Vector3 (Mathf.Round (transform.position.x), transform.position.y, Mathf.Round (transform.position.z));
                     moveAction = true;
                     moveCounter = 0;
                 }
