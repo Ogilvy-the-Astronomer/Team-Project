@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429720024631964}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.71079, y: 75.92067, z: 78.79668}
+  m_LocalPosition: {x: 11.722214, y: 3.2, z: -1.4313352}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4861604279199234}
@@ -202,4 +202,12 @@ MonoBehaviour:
   - {fileID: 1030749265618972, guid: 45c404e17e2f9864986f6f1ad90ff040, type: 2}
   - {fileID: 1223584292043930, guid: 2e3ef6621029631409f9002b5f7f932e, type: 2}
   - {fileID: 1729802000290660, guid: f2aa78aabce49b94fb75f41e9a72c68e, type: 2}
-  - {fileID: 1729802000290660, guid: f2aa78aabce49b94fb75f41e9a72c68e, type: 2}
+  - {fileID: 1231831235333156, guid: 736682b95c9388341bbe54932e058f65, type: 2}
+  music:
+  - {fileID: 8300000, guid: 912d1ba3e93ed2844aaf54a21cfb4dbf, type: 3}
+  - {fileID: 8300000, guid: 5feb7728fa6113349898cc971a356b68, type: 3}
+  - {fileID: 8300000, guid: d204309d16bfff6458e4bd50fcbe670e, type: 3}
+  - {fileID: 8300000, guid: 51e5a2da84452e440b9ce6351d109373, type: 3}
+  SourceRoomTheme: 0
+  TargetRoomTheme: 0
+  roomTypes: []

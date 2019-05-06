@@ -14,6 +14,7 @@ public class LayoutGen : MonoBehaviour {
 	public int zpConnection;
 	public int zmConnection;
 	public int count;
+	public int tier;
 	public int roomRadius;
 	public int minRoomRadius;
 
@@ -40,6 +41,7 @@ public class LayoutGen : MonoBehaviour {
 				if (Physics.OverlapSphere (xPlus.transform.position, 5).Length == 0) {
 					GameObject child = Instantiate (Room, xPlus.transform.position, Quaternion.identity);
 					child.GetComponent<LayoutGen> ().count++;
+					child.GetComponent<LayoutGen> ().tier = tier;
 					child.name = name;
 					SetRoomType (child);
 				}
@@ -48,6 +50,7 @@ public class LayoutGen : MonoBehaviour {
 				if (Physics.OverlapSphere (xMinus.transform.position, 5).Length == 0) {
 					GameObject child = Instantiate (Room, xMinus.transform.position, Quaternion.identity);
 					child.GetComponent<LayoutGen> ().count++;
+					child.GetComponent<LayoutGen> ().tier = tier;
 					child.name = name;
 					SetRoomType (child);
 				}
@@ -56,6 +59,7 @@ public class LayoutGen : MonoBehaviour {
 				if (Physics.OverlapSphere (zPlus.transform.position, 5).Length == 0) {
 					GameObject child = Instantiate (Room, zPlus.transform.position, Quaternion.identity);
 					child.GetComponent<LayoutGen> ().count++;
+					child.GetComponent<LayoutGen> ().tier = tier;
 					child.name = name;
 					SetRoomType (child);
 				}
@@ -64,6 +68,7 @@ public class LayoutGen : MonoBehaviour {
 				if (Physics.OverlapSphere (zMinus.transform.position, 5).Length == 0) {
 					GameObject child = Instantiate (Room, zMinus.transform.position, Quaternion.identity);
 					child.GetComponent<LayoutGen> ().count++;
+					child.GetComponent<LayoutGen> ().tier = tier;
 					child.name = name;
 					SetRoomType (child);
 				}
@@ -77,7 +82,19 @@ public class LayoutGen : MonoBehaviour {
 	}
 
 	void newFloor(){
-		Instantiate (teleporter, this.gameObject.transform.position + new Vector3(0,3,0), Quaternion.identity);
+		GameObject child = Instantiate (teleporter, this.gameObject.transform.position + new Vector3(0,3,0), Quaternion.identity);
+		if (name == "RoomCave") {
+			child.GetComponentInChildren<Teleporter> ().SourceRoomTheme = 0;
+		}
+		if (name == "RoomDungeon") {
+			child.GetComponentInChildren<Teleporter> ().SourceRoomTheme = 1;
+		}
+		if (name == "RoomPlains") {
+			child.GetComponentInChildren<Teleporter> ().SourceRoomTheme = 2;
+		}
+		if (name == "RoomRuins") {
+			child.GetComponentInChildren<Teleporter> ().SourceRoomTheme = 3;
+		}
 
 	}
 

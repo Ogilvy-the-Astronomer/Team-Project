@@ -14,6 +14,9 @@ public class EnemyController : MonoBehaviour {
 	int moveCounter;
 	public float size;
 	public bool attackpass;
+	public int tier;
+	public int defence;
+	public int damage;
 
 	public bool xplus = false;
 	public bool xminus = false;
@@ -52,7 +55,10 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	public void TakeDamage(int damage){
-		health -= damage;
+		damage -= defence;
+		if (damage > 0) {
+			health -= damage;
+		}
 	}
 
 	public void DoTurn(){
@@ -128,8 +134,7 @@ public class EnemyController : MonoBehaviour {
 			hits = Physics.OverlapBox (transform.position + GetComponent<BoxCollider> ().center + (dirList [i] * size), new Vector3(size,size,size)/1.4f);
 			foreach (Collider hit in hits) {
 				if (hit.gameObject.tag == "Player") {
-					Debug.Log ("attack");
-					//do damage
+					hit.gameObject.GetComponent<Player> ().TakeDamage (damage);
 					GetComponent<Animator> ().SetTrigger("isAttacking");
 					return true;
 				}
