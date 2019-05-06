@@ -39,7 +39,6 @@ public class LayoutGen : MonoBehaviour {
 					GameObject child = Instantiate (Room, xPlus.transform.position, Quaternion.identity);
 					child.GetComponent<LayoutGen> ().count++;
 					child.name = name;
-					child.AddComponent<Enemy> ();
 					SetRoomType (child);
 				}
 			}
@@ -48,6 +47,7 @@ public class LayoutGen : MonoBehaviour {
 					GameObject child = Instantiate (Room, xMinus.transform.position, Quaternion.identity);
 					child.GetComponent<LayoutGen> ().count++;
 					child.name = name;
+					SetRoomType (child);
 				}
 			}
 			if (zpConnection == 1) {
@@ -55,6 +55,7 @@ public class LayoutGen : MonoBehaviour {
 					GameObject child = Instantiate (Room, zPlus.transform.position, Quaternion.identity);
 					child.GetComponent<LayoutGen> ().count++;
 					child.name = name;
+					SetRoomType (child);
 				}
 			}
 			if (zmConnection == 1) {
@@ -62,6 +63,7 @@ public class LayoutGen : MonoBehaviour {
 					GameObject child = Instantiate (Room, zMinus.transform.position, Quaternion.identity);
 					child.GetComponent<LayoutGen> ().count++;
 					child.name = name;
+					SetRoomType (child);
 				}
 			}
 		}
@@ -78,16 +80,21 @@ public class LayoutGen : MonoBehaviour {
 	}
 
 	void SetRoomType(GameObject room){
-		if (Random.Range (1, 3) == 1) {
-			room.AddComponent<Enemy> ();
-			GameObject[] enemyList;
-			//if (room.name == "RoomPlains") {
-				enemyList = plainsEnemies;
-			//}
-			int j = Random.Range (1, 7);
-			for (int i = 0; i < j; i++) {
-				int k = Random.Range (0, enemyList.Length - 1);
-				Instantiate (enemyList [k], room.transform.position + new Vector3 (Random.Range (-12, 12), enemyList[k].transform.position.y, Random.Range (-12, 12)),Quaternion.identity);
+		if (Random.Range (1, 3) != 1) {
+			if (room.GetComponent<RoomType> () == null) {
+				room.AddComponent<RoomType> ();
+				room.GetComponent<RoomType> ().roomType = "Enemy";
+				GameObject[] enemyList;
+				enemyList = GameObject.Find("Controller").GetComponent<Enemy>().dungeonEnemies;
+				if (room.name == "RoomPlains") {
+					enemyList = GameObject.Find("Controller").GetComponent<Enemy>().plainsEnemies;
+				}
+				int j = Random.Range (1, 7);
+				for (int i = 0; i < j; i++) {
+					int k = Random.Range (0, enemyList.Length - 1);
+					GameObject child = Instantiate (enemyList [k], room.transform.position + new Vector3 (Random.Range (-12, 12), enemyList [k].transform.position.y, Random.Range (-12, 12)), Quaternion.identity);
+					child.name = enemyList [k].name;
+				}
 			}
 		}
 	}

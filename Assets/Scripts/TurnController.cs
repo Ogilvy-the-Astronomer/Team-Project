@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class TurnController : MonoBehaviour {
 	public GameObject player;
+	public int turnCooldown;
 	// Use this for initialization
 	void Start () {
-		
+		turnCooldown = 121;
 	}
 	
 	// Update is called once per frame
@@ -14,14 +15,18 @@ public class TurnController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Return)) {
 			EndTurn ();
 		}
+		if (turnCooldown < 60)
+			turnCooldown++;
 	}
 
 	public void EndTurn() {
-		//Debug.Log ("Turn Ended");
-		player.GetComponent<Player> ().BeginTurn ();
-		GameObject[] enemyList = GameObject.FindGameObjectsWithTag ("Enemy");
-		for (int i = 0; i < enemyList.Length; i++) {
-			enemyList [i].GetComponent<EnemyController> ().DoTurn ();
-		}
+		if (turnCooldown >= 60) {
+			player.GetComponent<Player> ().BeginTurn ();
+			GameObject[] enemyList = GameObject.FindGameObjectsWithTag ("Enemy");
+			for (int i = 0; i < enemyList.Length; i++) {
+				enemyList [i].GetComponent<EnemyController> ().DoTurn ();
+			}
+			turnCooldown = 0;
+		} 
 	}
 }

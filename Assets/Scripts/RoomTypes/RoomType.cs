@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Treasure : MonoBehaviour {
-
+public class RoomType : MonoBehaviour {
+	public string roomType;
 	// Use this for initialization
 	void Start () {
 		

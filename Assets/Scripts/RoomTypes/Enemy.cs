@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 	// Use this for initialization
+	public GameObject[] plainsEnemies;
+	public GameObject[] ruinsEnemies;
+	public GameObject[] caveEnemies;
+	public GameObject[] dungeonEnemies;
 	void Start () {
 		
 	}

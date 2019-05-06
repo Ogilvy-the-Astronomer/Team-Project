@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour {
 	public Vector3 MoveDir;
 	public float moveSpeed;
 	int moveCounter;
+	public float size;
+	public bool attackpass;
 
 	public bool xplus = false;
 	public bool xminus = false;
@@ -42,7 +44,9 @@ public class EnemyController : MonoBehaviour {
 				transform.position = new Vector3 (Mathf.Round (transform.position.x), transform.position.y, Mathf.Round (transform.position.z));
 				isMoving = false;
 				moveCounter = 0;
-				Attack ();
+				if (attackpass == false) {
+					Attack ();
+				}
 			}
 		}
 	}
@@ -55,9 +59,8 @@ public class EnemyController : MonoBehaviour {
 		playerPos = GameObject.FindGameObjectWithTag ("Player").transform.position;
 		distance = Vector3.Distance (transform.position, playerPos);
 		if (distance < 20) {
-			if (Attack () == false) {
-				Move ();
-			} else {
+			attackpass = Attack ();
+			if (attackpass == false) {
 				Move ();
 			}
 		}
@@ -65,26 +68,27 @@ public class EnemyController : MonoBehaviour {
 
 	void Move(){
 		xplus = xminus = zplus = zminus = false;
+		gameObject.layer = Physics.IgnoreRaycastLayer;
 		playerPos = GameObject.FindGameObjectWithTag ("Player").transform.position;
-		if (playerPos.x > transform.position.x && !Physics.Raycast(new Ray(transform.position,Vector3.right),1f)) {
+		if (playerPos.x > transform.position.x && !Physics.BoxCast(transform.position, transform.localScale,Vector3.right, Quaternion.identity, size)) {
 			MoveDir = (new Vector3 (1, 0, 0));
 			transform.GetChild(0).transform.eulerAngles = Vector3.up * 90;
 			isMoving = true;
 			xplus = true;
 		}
-		else if (playerPos.x < transform.position.x && !Physics.Raycast(new Ray(transform.position, Vector3.left),1f)) {
+		else if (playerPos.x < transform.position.x && !Physics.BoxCast(transform.position,transform.localScale, Vector3.left, Quaternion.identity, size)) {
 			MoveDir = (new Vector3 (-1, 0, 0));
 			transform.GetChild(0).transform.eulerAngles = Vector3.up * 270;
 			isMoving = true;
 			xminus = true;
 		}
-		if (playerPos.z > transform.position.z && !Physics.Raycast(new Ray(transform.position, Vector3.forward),1f)) {
+		if (playerPos.z > transform.position.z && !Physics.BoxCast(transform.position,transform.localScale, Vector3.forward, Quaternion.identity, size)) {
 			MoveDir = (new Vector3 (0, 0, 1));
 			transform.GetChild(0).transform.eulerAngles = Vector3.up * 0;
 			isMoving = true;
 			zplus = true;
 		}
-		else if (playerPos.z < transform.position.z && !Physics.Raycast(new Ray(transform.position, Vector3.back),1f)) {
+		else if (playerPos.z < transform.position.z && !Physics.BoxCast(transform.position, transform.localScale, Vector3.back, Quaternion.identity, size)) {
 			MoveDir = (new Vector3 (0, 0, -1));
 			transform.GetChild(0).transform.eulerAngles = Vector3.up * 180;
 			isMoving = true;
@@ -112,14 +116,19 @@ public class EnemyController : MonoBehaviour {
 			transform.GetChild(0).transform.eulerAngles = Vector3.up * 270;
 		}
 		#endregion
+		gameObject.layer = 0;
 	}
 		
 	bool Attack(){
-		RaycastHit[] hits;
+		//RaycastHit[] hits;
+		Collider[] hits;
 		for (int i = 0; i < dirList.Length; i++) {
-			hits = Physics.RaycastAll (transform.position, dirList [i], 1f);
-			foreach (RaycastHit hit in hits) {
-				if (hit.collider.tag == "Player") {
+			//hits = Physics.RaycastAll (new Vector3(transform.position.x, playerPos.y, transform.position.x), dirList [i], size);
+			//hits = Physics.BoxCastAll(GetComponent<BoxCollider>().center,GetComponent<BoxCollider>().size, dirList[i], Quaternion.identity, 1);
+			hits = Physics.OverlapBox (transform.position + GetComponent<BoxCollider> ().center + (dirList [i] * size), new Vector3(size,size,size)/1.4f);
+			foreach (Collider hit in hits) {
+				if (hit.gameObject.tag == "Player") {
+					Debug.Log ("attack");
 					//do damage
 					GetComponent<Animator> ().SetTrigger("isAttacking");
 					return true;
