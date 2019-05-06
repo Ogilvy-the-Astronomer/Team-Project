@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class Player : MonoBehaviour
     // Statistics
     public int Health = 100;
     public int HealthMax = 100;
+	public Text healthText;
+	public Text healthmaxText;
 
     public Vector3 AttackDir;
 	public bool moveAction;
@@ -37,7 +40,9 @@ public class Player : MonoBehaviour
         t = 3 * Mathf.PI / 2; //270 degrees, forward, vector 0,0,1
         WeaponPrimary = null;
         WeaponSecondary = null;
-        ArmourPrimary = null;
+		Armour A = new Armour();
+		ItemTemplates.ConstructArmour(ref A, 0);
+		ArmourPrimary = A;
         MiscSlots = new Item[5];
         for (int i = 0; i < MiscSlots.Length; i++)
         {
@@ -177,6 +182,8 @@ public class Player : MonoBehaviour
         }
         else
             DelayTimer--;
+		healthText.text = Health.ToString();
+		healthmaxText.text = HealthMax.ToString();
 	}
 
 	public void BeginTurn(){
@@ -225,5 +232,12 @@ public class Player : MonoBehaviour
 		}
 		GetComponent<Animator> ().Play ("Attack");
 		AttackDir = Vector3.zero;
+	}
+
+	public void TakeDamage(float damage){
+		damage -= ArmourPrimary.Resistances [0];
+		if (damage > 0) {
+			Health -= (int)damage;
+		}
 	}
 }

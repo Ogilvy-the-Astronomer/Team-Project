@@ -1,3 +1,4 @@
+Models:
 https://opengameart.org/content/simple-3d-crystals-unwrapped-simple-texture
 https://opengameart.org/content/low-poly-tree
 https://opengameart.org/content/grass-pixel-art
@@ -8,3 +9,11 @@ https://opengameart.org/content/faux-asphalt-texture-pack
 https://opengameart.org/content/dnt-ruined-houses-pack
 https://opengameart.org/content/hand-painted-mountainside
 https://opengameart.org/content/purple-brick-pixel-texture
+
+Sound & Music:
+https://jeremysoule.bandcamp.com/album/the-northerner-diaries-symphonic-sketches
+https://opengameart.org/content/rat-monster-screams
+
+
+Other:
+https://github.com/Shrimpey/UltimateOutline

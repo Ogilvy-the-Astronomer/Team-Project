@@ -12,7 +12,7 @@ public static class ItemTemplates
     static ItemTemplates()
     {
         WeaponList = new List<Weapon>();
-        ArmourList = new List<Armour>();
+		ArmourList = new List<Armour>();
         ConsumableList = new List<Consumable>();
         InitializeWeapons();
         InitializeArmours();
@@ -76,6 +76,14 @@ public static class ItemTemplates
             }
         }
     }
+	public static void ConstructArmour(ref Armour A, int index)
+	{
+		A.Index = index;
+		A.Name = ArmourList[index].Name;
+		A.Resistances = ArmourList [index].Resistances;
+		A.TypeI = ItemType.Armour;
+		A.PlusBonus = 0;
+	}
     private static void InitializeArmours()
     {
         for (int i = 0; i < ArmourList.Count; i++)
@@ -88,10 +96,18 @@ public static class ItemTemplates
             {
                 #region 0-
                 case 0:
+				{
+					ArmourList[i].Name = "Basic Armour";
+					ArmourList[i].Resistances[0] = 0;
                     break;
+				}
                 case 1:
+				{
+					ArmourList[i].Name = "Leather Armour";
+					ArmourList[i].Resistances[0] = 5;
                     break;
-                    #endregion
+				}
+				#endregion
             }
         }
     }
