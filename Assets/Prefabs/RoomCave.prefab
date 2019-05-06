@@ -261,7 +261,6 @@ MonoBehaviour:
   xMinus: {fileID: 1231009868453738}
   zPlus: {fileID: 1813635551892336}
   zMinus: {fileID: 1919361754063484}
-  rooms: []
   teleporter: {fileID: 1429720024631964, guid: 84d7f2d94ce9d9f428bbaf26f906d03a, type: 2}
   xpConnection: 0
   xmConnection: 0
@@ -270,3 +269,7 @@ MonoBehaviour:
   count: 0
   roomRadius: 6
   minRoomRadius: 2
+  plainsEnemies: []
+  ruinsEnemies: []
+  caveEnemies: []
+  dungeonEnemies: []
