@@ -21,6 +21,8 @@ public class LayoutGen : MonoBehaviour {
 	public GameObject[] ruinsEnemies;
 	public GameObject[] caveEnemies;
 	public GameObject[] dungeonEnemies;
+
+	public GameObject PauseMenu;
 	// Use this for initialization
 	void Start () {
 		if (count == roomRadius) {

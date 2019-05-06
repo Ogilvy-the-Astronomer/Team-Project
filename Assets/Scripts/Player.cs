@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
 	public Vector3 MoveDir;
 	float moveCounter;
     int TurningTime;
-    int TurningDelay;
+    int DelayTimer;
+    float t; // parameter for a parametric circle equation
 
 	// equipment variables
 	public Weapon WeaponPrimary;
@@ -29,9 +30,11 @@ public class Player : MonoBehaviour
     public Vector3 AttackDir;
 	public bool moveAction;
 	public bool standardAction;
+    public GameObject InventoryPanel;
 
     Player()
     {
+        t = 3 * Mathf.PI / 2; //270 degrees, forward, vector 0,0,1
         WeaponPrimary = null;
         WeaponSecondary = null;
         ArmourPrimary = null;
@@ -41,6 +44,19 @@ public class Player : MonoBehaviour
             MiscSlots[i] = null;
         }
         Inventory = new List<Item>();
+        // debug stuff --------------------------------------------------------------------
+        Weapon W = new Weapon();
+        ItemTemplates.ConstructWeapon(ref W, 0);
+        Inventory.Add(W);
+        for (int i = 0; i < 3; i++)
+        {
+            
+            W = new Weapon();
+            ItemTemplates.ConstructWeapon(ref W, 1);
+            Inventory.Add(W);
+        }
+        // -----------------------------------------------------------------------
+        //InventoryPanel.
     }
 
 	void Start ()
@@ -49,12 +65,12 @@ public class Player : MonoBehaviour
 		standardAction = true;
 		isMoving = false;
         TurningTime = 0;
-        TurningDelay = 0;
+        DelayTimer = 0;
 	}
 	
 	void Update ()
     {
-        if (TurningDelay == 0)
+        if (DelayTimer == 0)
         {
             Camera.main.transform.position = transform.position + new Vector3(0, 75, 0);
             if (moveAction && TurningTime == 0)
@@ -67,6 +83,7 @@ public class Player : MonoBehaviour
                     isMoving = true;
                     root.transform.eulerAngles = new Vector3(0, 0, 0);
                     AttackDir = Vector3.forward;
+                    t = 3 * Mathf.PI / 2;
                     //Debug.Log ("Player moved");
                 }
                 if (Input.GetKey(KeyCode.S) && !Physics.Raycast(new Ray(transform.position + Vector3.up, -Vector3.forward), 1f))
@@ -77,6 +94,7 @@ public class Player : MonoBehaviour
                     isMoving = true;
                     root.transform.eulerAngles = new Vector3(0, 180, 0);
                     AttackDir = Vector3.back;
+                    t = Mathf.PI / 2;
                     //Debug.Log ("Player moved");
                 }
                 if (Input.GetKey(KeyCode.D) && !Physics.Raycast(new Ray(transform.position + Vector3.up, Vector3.right), 1f))
@@ -87,6 +105,7 @@ public class Player : MonoBehaviour
                     isMoving = true;
                     root.transform.eulerAngles = new Vector3(0, 90, 0);
                     AttackDir = Vector3.right;
+                    t = 0;
                     //Debug.Log ("Player moved");
                 }
                 if (Input.GetKey(KeyCode.A) && !Physics.Raycast(new Ray(transform.position + Vector3.up, -Vector3.right), 1f))
@@ -97,6 +116,7 @@ public class Player : MonoBehaviour
                     isMoving = true;
                     root.transform.eulerAngles = new Vector3(0, 270, 0);
                     AttackDir = Vector3.left;
+                    t = Mathf.PI;
                     //Debug.Log ("Player moved");
                 }
             }
@@ -124,14 +144,18 @@ public class Player : MonoBehaviour
                 if (Input.GetKey(KeyCode.A))
                 {
                     root.transform.Rotate(0, -45, 0);
-                    TurningDelay = 20;
+                    DelayTimer = 20;
                     TurningTime = 0;
+                    t -= Mathf.PI / 4;
+                    AttackDir = new Vector3(Mathf.Cos(t), 0, Mathf.Sin(t));
                 }
                 if (Input.GetKey(KeyCode.D))
                 {
                     root.transform.Rotate(0, 45, 0);
-                    TurningDelay = 20;
+                    DelayTimer = 20;
                     TurningTime = 0;
+                    t += Mathf.PI / 4;
+                    AttackDir = new Vector3(Mathf.Cos(t), 0, Mathf.Sin(t));
                 }
             }
             if (Input.GetKey(KeyCode.Z)) // Attack key
@@ -145,9 +169,14 @@ public class Player : MonoBehaviour
             {
                 TurningTime = 15;
             }
+            if (Input.GetKey(KeyCode.I)) // Inventory key
+            {
+                InventoryPanel.SetActive(!InventoryPanel.activeSelf);
+                DelayTimer = 20; // needed a delay again so I used the same variable lol -Michał
+            }
         }
         else
-            TurningDelay--;
+            DelayTimer--;
 	}
 
 	public void BeginTurn(){
