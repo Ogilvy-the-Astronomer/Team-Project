@@ -23,6 +23,13 @@ public class Player : MonoBehaviour
     public Item[] MiscSlots; // 5 misc slots
     public List<Item> Inventory;
 
+    public GameObject InvPanel; // inventory panel
+    public GameObject InvPanelBag;
+    public GameObject InvPanelMisc;
+    public GameObject WeaponPrimaryButton;
+    public GameObject WeaponSecondaryButton;
+    public GameObject ArmourPrimaryButton;
+
     // Statistics
     public int Health = 100;
     public int HealthMax = 100;
@@ -30,8 +37,7 @@ public class Player : MonoBehaviour
     public Vector3 AttackDir;
 	public bool moveAction;
 	public bool standardAction;
-    public GameObject InventoryPanel;
-
+    
     Player()
     {
         t = 3 * Mathf.PI / 2; //270 degrees, forward, vector 0,0,1
@@ -57,6 +63,7 @@ public class Player : MonoBehaviour
         }
         // -----------------------------------------------------------------------
         //InventoryPanel.
+        InvPanelBagFill();
     }
 
 	void Start ()
@@ -67,7 +74,6 @@ public class Player : MonoBehaviour
         TurningTime = 0;
         DelayTimer = 0;
 	}
-	
 	void Update ()
     {
         if (DelayTimer == 0)
@@ -147,7 +153,7 @@ public class Player : MonoBehaviour
                     DelayTimer = 20;
                     TurningTime = 0;
                     t -= Mathf.PI / 4;
-                    AttackDir = new Vector3(Mathf.Cos(t), 0, Mathf.Sin(t));
+                    AttackDir = new Vector3(Mathf.Cos(t), 0, -Mathf.Sin(t));
                 }
                 if (Input.GetKey(KeyCode.D))
                 {
@@ -155,7 +161,7 @@ public class Player : MonoBehaviour
                     DelayTimer = 20;
                     TurningTime = 0;
                     t += Mathf.PI / 4;
-                    AttackDir = new Vector3(Mathf.Cos(t), 0, Mathf.Sin(t));
+                    AttackDir = new Vector3(Mathf.Cos(t), 0, -Mathf.Sin(t));
                 }
             }
             if (Input.GetKey(KeyCode.Z)) // Attack key
@@ -171,9 +177,14 @@ public class Player : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.I)) // Inventory key
             {
-                InventoryPanel.SetActive(!InventoryPanel.activeSelf);
+                InvPanel.SetActive(!InvPanel.activeSelf);
                 DelayTimer = 20; // needed a delay again so I used the same variable lol -Michał
             }
+            //if (Input.GetKey(KeyCode.X))
+            //{
+            //    Debug.Log(AttackDir.x + ", " + AttackDir.z);
+            //    DelayTimer = 10;
+            //} // subroutine used for testing the trigonometry of the turning
         }
         else
             DelayTimer--;
@@ -226,4 +237,20 @@ public class Player : MonoBehaviour
 		GetComponent<Animator> ().Play ("Attack");
 		AttackDir = Vector3.zero;
 	}
+
+    void InvPanelBagFill()
+    {
+        while (InvPanelBag.transform.childCount > 0)
+        {
+            Transform T = InvPanelBag.transform.GetChild(0);
+            Destroy(T.gameObject);
+        }
+        for (int i = 0; i < Inventory.Count; i++)
+        {
+            
+            InvButtonScript button = new InvButtonScript();
+            button.transform.SetParent(InvPanelBag.transform);
+            button.SetFields(Inventory[i].Name, Inventory[i]);
+        }
+    }
 }

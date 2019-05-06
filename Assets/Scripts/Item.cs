@@ -10,23 +10,15 @@ public enum ConsType { Potion, Arrow };
 
 public class Item
 {
-
     public int Index;
     public string Name;
     public ItemType TypeI;
     public int PlusBonus;
     public int Value;
     public bool Equippable;
-    //model
-    //icon
+    public Mesh Model;
+    public Material Texture;
 
-	void Start ()
-    {
-		
-	}
-
-	void Update ()
-    {
-		
-	}
+    void Start() { }
+    void Update() { }
 }
