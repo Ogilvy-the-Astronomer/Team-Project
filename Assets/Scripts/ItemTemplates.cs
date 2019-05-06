@@ -60,6 +60,13 @@ public static class ItemTemplates
                     }
                     break;
                 case 1:
+                    {
+                        WeaponList[i].Name = "Steel Spear";
+                        WeaponList[i].Value = 100;
+                        WeaponList[i].TypeW = WeapType.Heavy;
+                        WeaponList[i].Speed = 0.5f;
+                        WeaponList[i].TwoHanded = true;
+                    }
                     break;
                 case 2:
                     break;

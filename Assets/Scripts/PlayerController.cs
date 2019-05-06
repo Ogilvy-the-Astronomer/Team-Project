@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// this script isn't used anymore
+
+// this script isn't used anymore ------------------------------------------------------------------------------
+
 public class PlayerController : MonoBehaviour {
 	public float moveSpeed;
 	public float sensitivity;
