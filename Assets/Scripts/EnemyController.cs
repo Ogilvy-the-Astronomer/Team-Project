@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
+	public bool isBoss;
 	public int health;
 	Vector3 playerPos;
 	Vector3[] possiblepositions = new Vector3[5];
@@ -17,6 +18,9 @@ public class EnemyController : MonoBehaviour {
 	public int tier;
 	public int defence;
 	public int damage;
+	public float reachmodifier;
+	bool isDead;
+	public GameObject Pbox;
 
 	public bool xplus = false;
 	public bool xminus = false;
@@ -24,6 +28,7 @@ public class EnemyController : MonoBehaviour {
 	public bool zminus = false;
 	// Use this for initialization
 	void Start () {
+		isDead = false;
 		possiblepositions [0] = transform.position;
 		possiblepositions [1] = transform.position + new Vector3 (1, 0, 0);
 		possiblepositions [2] = transform.position - new Vector3 (1, 0, 0);
@@ -38,6 +43,22 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(health <= 0){
+			isDead = true;
+			GetComponent<Animator> ().SetBool ("isDead", true);
+			DropLoot ();
+			if (isBoss && health > -1000) {
+				GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ().baseDamage += 5 * tier;
+				GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ().baseDefence += 5 * tier;
+				GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ().HealthMax += 10 * tier;
+				health = -2000;
+				tag = "Enemy";
+				Teleporter[] list = GameObject.FindObjectsOfType<Teleporter> ();
+				foreach (Teleporter item in list) {
+					item.locked = false;
+				}
+			}
+		}
 		if (isMoving) {
 			if (moveCounter < 1 / moveSpeed) {
 				transform.Translate (MoveDir / (1 / moveSpeed));
@@ -62,12 +83,14 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	public void DoTurn(){
-		playerPos = GameObject.FindGameObjectWithTag ("Player").transform.position;
-		distance = Vector3.Distance (transform.position, playerPos);
-		if (distance < 20) {
-			attackpass = Attack ();
-			if (attackpass == false) {
-				Move ();
+		if (!isDead) {
+			playerPos = GameObject.FindGameObjectWithTag ("Player").transform.position;
+			distance = Vector3.Distance (transform.position, playerPos);
+			if (distance < 20) {
+				attackpass = Attack ();
+				if (attackpass == false) {
+					Move ();
+				}
 			}
 		}
 	}
@@ -131,7 +154,7 @@ public class EnemyController : MonoBehaviour {
 		for (int i = 0; i < dirList.Length; i++) {
 			//hits = Physics.RaycastAll (new Vector3(transform.position.x, playerPos.y, transform.position.x), dirList [i], size);
 			//hits = Physics.BoxCastAll(GetComponent<BoxCollider>().center,GetComponent<BoxCollider>().size, dirList[i], Quaternion.identity, 1);
-			hits = Physics.OverlapBox (transform.position + GetComponent<BoxCollider> ().center + (dirList [i] * size), new Vector3(size,size,size)/1.4f);
+			hits = Physics.OverlapBox (transform.position + (dirList [i] * size), new Vector3(size,size,size)/reachmodifier);
 			foreach (Collider hit in hits) {
 				if (hit.gameObject.tag == "Player") {
 					hit.gameObject.GetComponent<Player> ().TakeDamage (damage);
@@ -141,5 +164,13 @@ public class EnemyController : MonoBehaviour {
 			}
 		}
 		return false;
+	}
+	void DropLoot(){
+		if (Random.Range (0, 4) == 3) {
+			GameObject child = Instantiate (Pbox, transform.position, Quaternion.identity);
+			child.GetComponent<LootBox> ().tier = tier - 1;
+			child.name = "Pbox";
+			Destroy (gameObject);
+		}
 	}
 }

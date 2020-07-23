@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Room
   - Enemy
+  - Boss
+  - Lootbox
   layers:
   - Default
   - TransparentFX

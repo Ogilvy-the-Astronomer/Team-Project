@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114212488405733068}
   m_Layer: 0
   m_Name: RoomCave
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,9 +267,13 @@ MonoBehaviour:
   zpConnection: 0
   zmConnection: 0
   count: 0
+  tier: 0
   roomRadius: 6
   minRoomRadius: 2
   plainsEnemies: []
   ruinsEnemies: []
   caveEnemies: []
   dungeonEnemies: []
+  PauseMenu: {fileID: 0}
+  wbox: {fileID: 1717224238927478, guid: 96fc55ef010c50243907b479ac43a813, type: 2}
+  abox: {fileID: 1904807047299562, guid: 8aba4d87bbc7dd94db9e615e32fd1dd7, type: 2}

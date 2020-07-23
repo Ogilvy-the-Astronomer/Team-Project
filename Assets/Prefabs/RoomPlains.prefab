@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 114367741576183254}
   m_Layer: 0
   m_Name: RoomPlains
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,9 +202,9 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+  - {fileID: 2100000, guid: 44209c4c4dd12e54e9573c42b90e3cd1, type: 2}
   - {fileID: 2100000, guid: 36d7af7a37b9b5c41a3efe7b2a49f75c, type: 2}
   - {fileID: 2100000, guid: a21851d20c34636418e6ebe70eedb0be, type: 2}
-  - {fileID: 2100000, guid: 44209c4c4dd12e54e9573c42b90e3cd1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -230,7 +230,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1512109196786136}
-  m_Mesh: {fileID: 4300028, guid: 2027431e307e0d445bb66be88cb2c5cc, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 6796775ca9385884092b86cdaae557b0, type: 3}
 --- !u!64 &64821848751474778
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -267,6 +267,7 @@ MonoBehaviour:
   zpConnection: 0
   zmConnection: 0
   count: 0
+  tier: 1
   roomRadius: 6
   minRoomRadius: 2
   plainsEnemies:
@@ -274,3 +275,6 @@ MonoBehaviour:
   ruinsEnemies: []
   caveEnemies: []
   dungeonEnemies: []
+  PauseMenu: {fileID: 0}
+  wbox: {fileID: 1717224238927478, guid: 96fc55ef010c50243907b479ac43a813, type: 2}
+  abox: {fileID: 1904807047299562, guid: 8aba4d87bbc7dd94db9e615e32fd1dd7, type: 2}

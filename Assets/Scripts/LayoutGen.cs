@@ -24,10 +24,37 @@ public class LayoutGen : MonoBehaviour {
 	public GameObject[] dungeonEnemies;
 
 	public GameObject PauseMenu;
+	public GameObject wbox;
+	public GameObject abox;
 	// Use this for initialization
 	void Start () {
 		if (count == roomRadius) {
-			newFloor();
+			if (GameObject.FindGameObjectsWithTag ("Boss").Length == 0) {
+				int bossTheme = 2;
+				if (name == "RoomCave") {
+					bossTheme = 0;
+				}
+				if (name == "RoomDungeon") {
+					bossTheme = 1;
+				}
+				if (name == "RoomPlains") {
+					bossTheme = 2;
+				}
+				if (name == "RoomRuins") {
+					bossTheme = 3;
+				}
+
+				GameObject Boss = GameObject.Find ("Controller").GetComponent<Enemy> ().bosses [bossTheme];
+				GameObject child = Instantiate (Boss, transform.position + new Vector3 (0, Boss.transform.position.y, 0), Quaternion.identity);
+				child.GetComponent<EnemyController> ().tier = tier;
+				child.GetComponent<EnemyController> ().defence *= tier;
+				child.GetComponent<EnemyController> ().damage *= tier;
+				child.GetComponent<EnemyController> ().health *= tier;
+				child.name = Boss.name;
+			} else {
+				newFloor ();
+			}
+
 		}
 		if (count < roomRadius) {
 			xpConnection = Random.Range (0, 2);
@@ -95,26 +122,47 @@ public class LayoutGen : MonoBehaviour {
 		if (name == "RoomRuins") {
 			child.GetComponentInChildren<Teleporter> ().SourceRoomTheme = 3;
 		}
+		child.GetComponentInChildren<Teleporter> ().tier = tier;
 
 	}
 
 	void SetRoomType(GameObject room){
-		if (Random.Range (1, 3) != 1) {
-			if (room.GetComponent<RoomType> () == null) {
-				room.AddComponent<RoomType> ();
-				room.GetComponent<RoomType> ().roomType = "Enemy";
-				GameObject[] enemyList;
-				enemyList = GameObject.Find("Controller").GetComponent<Enemy>().dungeonEnemies;
-				if (room.name == "RoomPlains") {
-					enemyList = GameObject.Find("Controller").GetComponent<Enemy>().plainsEnemies;
-				}
-				int j = Random.Range (1, 7);
-				for (int i = 0; i < j; i++) {
-					int k = Random.Range (0, enemyList.Length - 1);
-					GameObject child = Instantiate (enemyList [k], room.transform.position + new Vector3 (Random.Range (-12, 12), enemyList [k].transform.position.y, Random.Range (-12, 12)), Quaternion.identity);
-					child.name = enemyList [k].name;
-				}
+		int t = Random.Range (1, 20);
+		if (t > 7) {
+			//if (room.GetComponent<RoomType> () != null) {
+			room.AddComponent<RoomType> ();
+			room.GetComponent<RoomType> ().roomType = "Enemy";
+			GameObject[] enemyList;
+			enemyList = GameObject.Find ("Controller").GetComponent<Enemy> ().dungeonEnemies;
+			if (room.name == "RoomPlains") {
+				enemyList = GameObject.Find ("Controller").GetComponent<Enemy> ().plainsEnemies;
 			}
+			if (room.name == "RoomCave") {
+				enemyList = GameObject.Find ("Controller").GetComponent<Enemy> ().caveEnemies;
+			}
+			if (room.name == "RoomRuins") {
+				enemyList = GameObject.Find ("Controller").GetComponent<Enemy> ().ruinsEnemies;
+			}
+			if (room.name == "RoomDungeon") {
+				enemyList = GameObject.Find ("Controller").GetComponent<Enemy> ().dungeonEnemies;
+			}
+			int j = Random.Range (1, 4);
+			for (int i = 0; i < j; i++) {
+				int k = Random.Range (0, enemyList.Length);
+				GameObject child = Instantiate (enemyList [k], room.transform.position + new Vector3 (Random.Range (-12, 12), enemyList [k].transform.position.y, Random.Range (-12, 12)), Quaternion.identity);
+				child.GetComponent<EnemyController> ().defence *= room.GetComponent<LayoutGen> ().tier;
+				child.GetComponent<EnemyController> ().damage *= room.GetComponent<LayoutGen> ().tier;
+				child.GetComponent<EnemyController> ().health *= room.GetComponent<LayoutGen> ().tier;
+				child.GetComponent<EnemyController> ().tier = room.GetComponent<LayoutGen> ().tier;
+				child.name = enemyList [k].name;
+			}
+			//}
+		} else if (t == 1 || t == 2) {
+			GameObject child = Instantiate (wbox, room.transform.position + new Vector3 (0, wbox.transform.position.y, 0), Quaternion.identity);
+			child.GetComponent<LootBox> ().tier = tier - 1;
+		} else if (t == 3 || t == 4) {
+			GameObject child = Instantiate (abox, room.transform.position + new Vector3 (0, abox.transform.position.y, 0), Quaternion.identity);
+			child.GetComponent<LootBox> ().tier = tier - 1;
 		}
 	}
 }

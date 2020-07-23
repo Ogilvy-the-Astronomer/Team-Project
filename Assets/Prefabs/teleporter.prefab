@@ -211,3 +211,7 @@ MonoBehaviour:
   SourceRoomTheme: 0
   TargetRoomTheme: 0
   roomTypes: []
+  locked: 1
+  finalplayerpos: {x: 0, y: 0, z: 0}
+  finalMusic: {fileID: 8300000, guid: eefd1d12fa029ea46974070673ff9832, type: 3}
+  tier: 0

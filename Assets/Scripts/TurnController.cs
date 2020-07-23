@@ -20,11 +20,15 @@ public class TurnController : MonoBehaviour {
 	}
 
 	public void EndTurn() {
-		if (turnCooldown >= 60) {
+		if (turnCooldown >= 10) {
 			player.GetComponent<Player> ().BeginTurn ();
 			GameObject[] enemyList = GameObject.FindGameObjectsWithTag ("Enemy");
 			for (int i = 0; i < enemyList.Length; i++) {
 				enemyList [i].GetComponent<EnemyController> ().DoTurn ();
+			}
+			GameObject[] bossList = GameObject.FindGameObjectsWithTag ("Boss");
+			for (int i = 0; i < bossList.Length; i++) {
+				bossList [i].GetComponent<EnemyController> ().DoTurn ();
 			}
 			turnCooldown = 0;
 		} 

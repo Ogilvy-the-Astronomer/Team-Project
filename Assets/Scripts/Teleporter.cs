@@ -16,8 +16,13 @@ public class Teleporter : MonoBehaviour {
 	public int TargetRoomTheme;
 	public string[] roomTypes;
 	public bool locked;
+	bool finalfloor;
+	public Vector3 finalplayerpos;
+	public AudioClip finalMusic;
+	public int tier;
 	// Use this for initialization
 	void Start () {
+		finalplayerpos = GameObject.Find ("PlayerTP").transform.position;
 	}
 	
 	// Update is called once per frame
@@ -32,7 +37,10 @@ public class Teleporter : MonoBehaviour {
 				Room = rooms [TargetRoomTheme];
 				GameObject newFloorRoom = Instantiate (Room, new Vector3 (Random.Range (-10000, 10000) + 0.5f, 0, Random.Range (-10000, 10000) + 0.5f), Quaternion.identity);
 				newFloorRoom.GetComponent<LayoutGen> ().count = 0;
-				newFloorRoom.GetComponent<LayoutGen> ().tier++;
+				newFloorRoom.GetComponent<LayoutGen> ().tier = tier+1;
+				if (newFloorRoom.GetComponent<LayoutGen> ().tier + 1 > 5) {
+					finalfloor = true;
+				}
 				newFloorRoom.name = rooms [TargetRoomTheme].name;
 				GameObject child = Instantiate (teleporter, newFloorRoom.gameObject.transform.position + new Vector3 (0, 3, 0), Quaternion.identity);
 				other = child;
@@ -44,10 +52,16 @@ public class Teleporter : MonoBehaviour {
 				GameObject.Find ("Controller").GetComponent<Doorstopper> ().Fill ();
 
 			}
-			Camera.main.GetComponent<AudioSource> ().clip = music [TargetRoomTheme];
-			Camera.main.GetComponent<AudioSource> ().Play ();
-			otherScript.active = false;
-			target.gameObject.transform.position = other.transform.position;
+			if (!finalfloor) {
+				Camera.main.GetComponent<AudioSource> ().clip = music [TargetRoomTheme];
+				Camera.main.GetComponent<AudioSource> ().Play ();
+				otherScript.active = false;
+				target.gameObject.transform.position = other.transform.position;
+			} else {
+				target.gameObject.transform.position = finalplayerpos;
+				Camera.main.GetComponent<AudioSource> ().clip = finalMusic;
+				Camera.main.GetComponent<AudioSource> ().Play ();
+			}
 		}
 
 	}

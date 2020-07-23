@@ -3,8 +3,18 @@ guid: 8f563c0155792ff419b45ead99091f8c
 timeCreated: 1550475708
 licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Room: {instanceID: 0}
+  - xPlus: {instanceID: 0}
+  - xMinus: {instanceID: 0}
+  - zPlus: {instanceID: 0}
+  - zMinus: {instanceID: 0}
+  - teleporter: {instanceID: 0}
+  - PauseMenu: {instanceID: 0}
+  - wbox: {fileID: 1717224238927478, guid: 96fc55ef010c50243907b479ac43a813, type: 2}
+  - abox: {fileID: 1904807047299562, guid: 8aba4d87bbc7dd94db9e615e32fd1dd7, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -230,17 +230,17 @@ MonoBehaviour:
   xMinus: {fileID: 1422115097972964}
   zPlus: {fileID: 1773577679218084}
   zMinus: {fileID: 1739261488282518}
-  textures:
-  - {fileID: 2100000, guid: e7061e85386581440a87e264da851f63, type: 2}
-  - {fileID: 2100000, guid: 7bd31819e5dc03f4ab31b970f2a7df14, type: 2}
-  - {fileID: 2100000, guid: eed34ed803a93ff47875358287fd7c88, type: 2}
-  - {fileID: 2100000, guid: 0705e38ee34f5c049984837e5041772d, type: 2}
-  - {fileID: 2100000, guid: af400c317979e7341b21a52e46170df0, type: 2}
   teleporter: {fileID: 1429720024631964, guid: 84d7f2d94ce9d9f428bbaf26f906d03a, type: 2}
   xpConnection: 0
   xmConnection: 0
   zpConnection: 0
   zmConnection: 0
   count: 0
+  tier: 0
   roomRadius: 6
   minRoomRadius: 2
+  plainsEnemies: []
+  ruinsEnemies: []
+  caveEnemies: []
+  dungeonEnemies: []
+  PauseMenu: {fileID: 0}

@@ -21,6 +21,7 @@ ModelImporter:
     100026: tree_lowpoly_swap:Mesh_group
     100028: pCube2
     100030: RoomPlains
+    100032: RoomPlains_root
     400000: group_Mesh
     400002: group_Mesh1
     400004: group_Mesh10
@@ -37,11 +38,13 @@ ModelImporter:
     400026: tree_lowpoly_swap:Mesh_group
     400028: pCube2
     400030: RoomPlains
+    400032: RoomPlains_root
     2100000: tree_lowpoly_swap_trunk
     2100002: tree_lowpoly_swap_foliage
     2100004: lambert2SG
     2100006: trunk
     2100008: foliage
+    2100010: RoomPlainsMat
     2300000: group_Mesh
     2300002: group_Mesh1
     2300004: group_Mesh10
@@ -87,6 +90,7 @@ ModelImporter:
     4300024: tree_lowpoly_swap:Mesh_group
     4300026: pCube2
     4300028: RoomPlains
+    6400000: RoomPlains
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -134,7 +138,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -144,8 +148,8 @@ ModelImporter:
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
-    weldVertices: 1
-    preserveHierarchy: 0
+    weldVertices: 0
+    preserveHierarchy: 1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
@@ -157,7 +161,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
