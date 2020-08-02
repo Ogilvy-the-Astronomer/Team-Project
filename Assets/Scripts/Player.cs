@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
 
     public Vector3 AttackDir;
 	public bool moveAction;
+	public bool inCombat;
 	public int movecount;
 	public bool standardAction;
 
@@ -247,8 +248,18 @@ public class Player : MonoBehaviour
 		DPotText.text = (DefensePotions + " Defense potions remaining.\n" + DefensePotionTimer + " turns left with defence increased.");
 		BPotText.text = (BuffPotions + " Buff potions remaining.\n" + BuffPotionTimer + " turns left with attack buffed.");
 
-		if (movecount < 50) {
+		EnemyController[] enemies = FindObjectsOfType<EnemyController>();
+		inCombat = false;
+		for (int i = 0; i < enemies.Length; i++) {
+			if (Vector3.Distance(enemies[i].transform.position, transform.position) < 20) {
+				inCombat = true;
+                i = enemies.Length + 1;
+			}
+		}
+
+		if (!inCombat) {
 			moveAction = true;
+			standardAction = true;
 		}
 	}
 
